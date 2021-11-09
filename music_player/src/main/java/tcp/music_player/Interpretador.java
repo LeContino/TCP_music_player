@@ -1,4 +1,7 @@
 package tcp.music_player;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.lang.Math;
@@ -9,32 +12,10 @@ import java.lang.Math;
  */
 public class Interpretador {
     private String texto;
-    public ArrayList<String> textoConvertido = new ArrayList<String>();
-    private static final String[] comandosValidos = {
-        // Notas musicais
-        "a",
-        "b",
-        "c",
-        "d",
-        "e",
-        "f",
-        "g",
-        " ",
-        // Comandos
-        "+",
-        "-",
-        "i",
-        "o",
-        "u",
-        "t+",
-        "t-",
-        "?",
-        ".",
-        "nl",
-        "bpm+",
-        "bpm-",
-        "else"
-    };
+    // Verificar qual é o volume padrão do jfugue
+    private int volumeAtual = 4000;
+    private int instrumentoAtual = 0;
+    private int oitavaAtual = 1;
     
     // constructor
     public Interpretador(String texto) {
@@ -50,62 +31,123 @@ public class Interpretador {
         this.texto = texto;
     }
     
-    public int acharComandoMaisLongo(){
-        int comandoMaisLongo = 0;
-        for(int i = 0; i < this.comandosValidos.length; i++){
-            comandoMaisLongo = Math.max(comandoMaisLongo, this.comandosValidos[i].length());
+    // Aumentar o volume de 500 em 500
+    private void aumentarVolume(){
+        if(this.volumeAtual*2 > 16383){
+            this.volumeAtual = 4000;
+        }else{
+            this.volumeAtual *= 2;
         }
-        return comandoMaisLongo;
     }
     
-    public String verificarComandoComposto(String comando){
-        String comandoComposto = comando.substring(0,1);
+    private void aumentarOitava(){
+        if(this.oitavaAtual+1 > 8){
+            this.oitavaAtual = 1;
+        }else{
+            this.oitavaAtual += 1;
+        }
+    }
+    
+    private void selecionarAgogo(){
+        this.instrumentoAtual = 113;
+    }
+    
+    private boolean selecionarHarpsichord(char caractereAtual){
+        if(caractereAtual == 'O' || 
+           caractereAtual == 'o' || 
+           caractereAtual == 'I' || 
+           caractereAtual == 'i' || 
+           caractereAtual == 'U' ||
+           caractereAtual == 'u')
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    private void selecionarTubularBells(){
+        this.instrumentoAtual = 14;
+    }
+    
+    private void selecionarPanFlute(){
+        this.instrumentoAtual = 75;
+    }
+    
+    private void selecionarChurchOrgan(){
+        this.instrumentoAtual = 19;
+    }
+    
+    private boolean repetirNota(char caractereAtual, char caractereAnterior){
+        if((caractereAtual >= 'a' && caractereAtual <= 'z' ||
+            caractereAtual >= 'H' && caractereAtual <= 'Z') &&
+            !this.selecionarHarpsichord(caractereAtual) &&
+            caractereAnterior >= 'A' && caractereAnterior <= 'G')
+        {
+            return true;
+        }else{
+            return false;
+        }
+            
+    }
+    
+    private void selecionarNovoInstrumento(char caractere){
+        int aumentarEm = caractere-48;
         
-        // Procurando por "btm+", "btm-" e "else"
-        if(
-            comando.length() >= 4 && 
-            ("bpm-".equals(comando.substring(0,4)) || 
-             "bpm+".equals(comando.substring(0,4)) || 
-             "else".equals(comando.substring(0,4))))
-        {
-            comandoComposto = comando.substring(0,4);
-        // Procurando por "t-", "t+" e "nl"
-        }else if(
-            comando.length() >= 2 &&
-            ("t+".equals(comando.substring(0,2)) || 
-             "t-".equals(comando.substring(0,2)) || 
-             "nl".equals(comando.substring(0,2))))
-        {
-            comandoComposto = comando.substring(0,2);
+        if(this.instrumentoAtual+aumentarEm > 127){
+            this.instrumentoAtual = 0;
+        }else{
+            this.instrumentoAtual += aumentarEm;
         }
-        return comandoComposto;
     }
-    
-    // Demais métodos
-    public boolean analisarTexto(){
-        int comprimentoTexto = this.texto.length();
-        int comandoMaisLongo = this.acharComandoMaisLongo();
-        String comandoComposto;
+         
+    public String analisarTexto(){
+        char caractereAnterior = '-';
+        String textoConvertido = "";
+        String separador = " ";
         
         for(int i = 0; i < this.texto.length(); i++){
-            // Temos que verificar qual é o tamanho do comando mais longo para não acessar um índice inválido
-            if(comprimentoTexto-i > comandoMaisLongo){
-                System.out.println(this.texto.substring(i,i+comandoMaisLongo));
-                comandoComposto = this.verificarComandoComposto(this.texto.substring(i,i+comandoMaisLongo));
+            char caractereAtual = this.texto.charAt(i);
+            
+            if(this.repetirNota(caractereAtual, caractereAnterior)){
+                textoConvertido += caractereAnterior;
+                textoConvertido += Integer.toString(this.oitavaAtual);
+                caractereAtual = caractereAnterior;
+            }else if(caractereAtual >= 'A' && caractereAtual <= 'G'){
+                textoConvertido += caractereAtual;
+                textoConvertido += Integer.toString(this.oitavaAtual);
+            }else if(caractereAtual == ' '){
+                this.aumentarVolume();
+                textoConvertido += "X[Volume]="+Integer.toString(this.volumeAtual);
+            }else if(caractereAtual == '!'){
+                this.selecionarAgogo();
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
+            }else if(this.selecionarHarpsichord(caractereAtual)){
+                this.instrumentoAtual = 6;
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
+            }else if(caractereAtual >= '0' && caractereAtual <= '9'){
+                this.selecionarNovoInstrumento(caractereAtual);
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
+            }else if(caractereAtual == '?' || caractereAtual == '.'){
+                this.aumentarOitava();
+            }else if(caractereAtual == 10){
+                this.selecionarTubularBells();
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
+            }else if(caractereAtual == ';'){
+                this.selecionarPanFlute();
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
+            }else if(caractereAtual == ','){
+                this.selecionarChurchOrgan();
+                textoConvertido += "I["+Integer.toString(this.instrumentoAtual)+"]";
             }else{
-                System.out.println(this.texto.substring(i));
-                comandoComposto = this.verificarComandoComposto(this.texto.substring(i));
+                textoConvertido += "R";
             }
             
-            // Verificando se o comando encontrado é um comando válido
-            boolean comandoValido = Arrays.stream(comandosValidos).anyMatch(comandoComposto::equals);
-            if(!comandoValido) return false;
-            
-            this.textoConvertido.add(comandoComposto);
-            
-            if(comandoComposto.length() > 1) i += comandoComposto.length()-1;
+            textoConvertido += separador;
+            caractereAnterior = caractereAtual;
         }
         
-        return true;
+        System.out.println(textoConvertido);
+        return textoConvertido;
     }
 }
