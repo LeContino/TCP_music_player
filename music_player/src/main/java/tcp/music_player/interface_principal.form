@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JPanel" name="panelEscolherArquivo">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="frameEscolherArquivo" pref="581" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="frameEscolherArquivo" pref="481" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JFileChooser" name="frameEscolherArquivo">
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,103 +56,131 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Label_GeradorDeMusica" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="Label_GeradorDeMusica" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Label_Volume" pref="115" max="32767" attributes="0"/>
-                                  <Component id="Label_BPM" max="32767" attributes="0"/>
-                                  <Component id="Label_Oitavas" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ajuste_BPM" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="ajuste_volume" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="ajuste_Oitavas" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="Label_Valores_Iniciais" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Select_Instrumento" min="-2" pref="112" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
-                      <Component id="jScrollPane4" min="-2" pref="296" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Label_Oitavas" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="Label_Volume" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="Label_Oitavas1" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="Label_Oitavas2" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="selectBPM" min="-2" pref="174" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="spinnerVolume" min="-2" pref="174" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="spinnerOitava" min="-2" pref="174" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="selectInstrumento" min="-2" pref="174" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="Button_play" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="Button_pause" min="-2" pref="43" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="Button_cancel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="Button_return" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="Label_Valores_Iniciais" min="-2" pref="222" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="buttonCarregarArquivoTexto" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="buttonPlay" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="buttonPause" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="buttonCancel" min="-2" pref="65" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="buttonReturn" min="-2" pref="65" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="buttonSalvarMIDI" max="32767" attributes="0"/>
+                      <Component id="toggleVisibilidadeControles" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="Label_GeradorDeMusica" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="Label_Valores_Iniciais" min="-2" pref="14" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Label_Volume" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ajuste_volume" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spinnerVolume" alignment="3" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ajuste_BPM" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_BPM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spinnerOitava" alignment="3" pref="0" max="32767" attributes="0"/>
+                          <Component id="Label_Oitavas1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="selectBPM" alignment="3" pref="0" max="32767" attributes="0"/>
                           <Component id="Label_Oitavas" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="ajuste_Oitavas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Label_Oitavas2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="selectInstrumento" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane4" min="-2" pref="182" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="buttonPause" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonReturn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="buttonPlay" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonCarregarArquivoTexto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="toggleVisibilidadeControles" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonSalvarMIDI" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane4" min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Button_play" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Button_pause" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Button_cancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Button_return" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="Select_Instrumento" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JSpinner" name="ajuste_volume">
+    <Component class="javax.swing.JSpinner" name="spinnerVolume">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spinnerVolumeStateChanged"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JSpinner" name="ajuste_Oitavas">
-    </Component>
-    <Component class="javax.swing.JSpinner" name="ajuste_BPM">
+    <Component class="javax.swing.JSpinner" name="spinnerOitava">
+      <Properties>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection component="spinnerOitava" name="value" type="property"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spinnerOitavaStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="Label_Volume">
       <Properties>
@@ -130,22 +191,13 @@
         <Property name="text" type="java.lang.String" value="Volume"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Label_BPM">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="BPM"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="Label_Oitavas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Oitavas"/>
+        <Property name="text" type="java.lang.String" value="BPM"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Label_Valores_Iniciais">
@@ -163,41 +215,62 @@
           <Font name="Tahoma" size="24" style="3"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="&#x266b;&#x266b; Gerador de m&#xfa;sica &#x266b;&#x266b; "/>
+        <Property name="text" type="java.lang.String" value="&#x266b;&#x266b; Musicotron 2000 &#x266b;&#x266b; "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Button_play">
+    <Component class="javax.swing.JButton" name="buttonPlay">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x25b6;"/>
+        <Property name="toolTipText" type="java.lang.String" value="Reproduzir"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlayMouseClicked"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Button_pause">
+    <Component class="javax.swing.JButton" name="buttonPause">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x23f8;"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="II"/>
+        <Property name="toolTipText" type="java.lang.String" value="Pausar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Button_cancel">
+    <Component class="javax.swing.JButton" name="buttonCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x25fc;"/>
+        <Property name="toolTipText" type="java.lang.String" value="Parar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCancelMouseClicked"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Button_return">
+    <Component class="javax.swing.JButton" name="buttonReturn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="\ud83d\udd01" containsInvalidXMLChars="true"/>
+        <Property name="text" type="java.lang.String" value="&#x23ce;"/>
+        <Property name="toolTipText" type="java.lang.String" value="Tocar do in&#xed;cio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Select_Instrumento">
+    <Component class="javax.swing.JComboBox" name="selectInstrumento">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Instrumento"/>
-            <StringItem index="1" value="Viol&#xe3;o"/>
-            <StringItem index="2" value="Piano"/>
-            <StringItem index="3" value="Flauta"/>
-            <StringItem index="4" value="Violino"/>
+          <StringArray count="7">
+            <StringItem index="0" value="Violin"/>
+            <StringItem index="1" value="Piano"/>
+            <StringItem index="2" value="Agogo"/>
+            <StringItem index="3" value="Harpsichord"/>
+            <StringItem index="4" value="Tubular Bells"/>
+            <StringItem index="5" value="Pan Flute"/>
+            <StringItem index="6" value="Church Organ"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="selectInstrumentoItemStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -209,14 +282,85 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="Caixa_de_Texto">
+        <Component class="javax.swing.JTextArea" name="textAreaMusica">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Digite seu texto aqui \ud83c\udfa4\ud83c\udfbc" containsInvalidXMLChars="true"/>
+            <Property name="toolTipText" type="java.lang.String" value="Digite seu texto aqui \ud83c\udfa4\ud83c\udfbc" containsInvalidXMLChars="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JToggleButton" name="toggleVisibilidadeControles">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Desabilitar controles"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="toggleVisibilidadeControlesMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="selectBPM">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="14">
+            <StringItem index="0" value="Grave (40)"/>
+            <StringItem index="1" value="Largo (45)"/>
+            <StringItem index="2" value="Larghetto (50)"/>
+            <StringItem index="3" value="Lento (55)"/>
+            <StringItem index="4" value="Adagio (60)"/>
+            <StringItem index="5" value="Adagietto (65)"/>
+            <StringItem index="6" value="Andante (70)"/>
+            <StringItem index="7" value="Andantino (80)"/>
+            <StringItem index="8" value="Moderato (95)"/>
+            <StringItem index="9" value="Allegretto (110)"/>
+            <StringItem index="10" value="Allegro (120)"/>
+            <StringItem index="11" value="Vivace (145)"/>
+            <StringItem index="12" value="Presto (180)"/>
+            <StringItem index="13" value="Pretissimo (220)"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="selectBPMItemStateChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Label_Oitavas1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Oitavas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Label_Oitavas2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Instrumento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonSalvarMIDI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salvar MIDI"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonSalvarMIDIMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonCarregarArquivoTexto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Carregar arquivo de texto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCarregarArquivoTextoMouseClicked"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
