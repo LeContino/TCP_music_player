@@ -92,20 +92,15 @@
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="buttonCarregarArquivoTexto" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="buttonPlay" min="-2" pref="65" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonPause" min="-2" pref="65" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonCancel" min="-2" pref="65" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="buttonReturn" min="-2" pref="65" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="buttonSalvarMIDI" max="32767" attributes="0"/>
-                      <Component id="toggleVisibilidadeControles" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonPlay" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="buttonCancel" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane4" alignment="0" pref="290" max="32767" attributes="0"/>
+                  <Component id="buttonSalvarMIDI" max="32767" attributes="0"/>
+                  <Component id="toggleVisibilidadeControles" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
@@ -145,13 +140,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane4" min="-2" pref="182" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="buttonPause" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="buttonReturn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="buttonPlay" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonPlay" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonCarregarArquivoTexto" min="-2" max="-2" attributes="0"/>
@@ -230,15 +221,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonPlayMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonPause">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="II"/>
-        <Property name="toolTipText" type="java.lang.String" value="Pausar"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="buttonCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x25fc;"/>
@@ -247,12 +229,6 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCancelMouseClicked"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="buttonReturn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x23ce;"/>
-        <Property name="toolTipText" type="java.lang.String" value="Tocar do in&#xed;cio"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectInstrumento">
       <Properties>
@@ -298,6 +274,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="toggleVisibilidadeControlesMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleVisibilidadeControlesActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectBPM">
@@ -360,6 +337,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCarregarArquivoTextoMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCarregarArquivoTextoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

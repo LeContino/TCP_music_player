@@ -10,10 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import org.jfugue.Player;
 
-/**
- *
- * @author henrique
- */
+
 public class ManipuladorArquivos {
     private File arquivo;
 

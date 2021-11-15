@@ -6,10 +6,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.lang.Math;
 
-/**
- *
- * 
- */
+
 public class Interpretador {
     private String texto;
     private boolean interfaceHabilitada = true;

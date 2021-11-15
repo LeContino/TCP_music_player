@@ -11,10 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-/**
- *
- * @author lelec
- */
+
 public class interface_principal extends javax.swing.JFrame {
 
     /**
@@ -42,9 +39,7 @@ public class interface_principal extends javax.swing.JFrame {
         Label_Valores_Iniciais = new javax.swing.JLabel();
         Label_GeradorDeMusica = new javax.swing.JLabel();
         buttonPlay = new javax.swing.JButton();
-        buttonPause = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
-        buttonReturn = new javax.swing.JButton();
         selectInstrumento = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         textAreaMusica = new javax.swing.JTextArea();
@@ -118,10 +113,6 @@ public class interface_principal extends javax.swing.JFrame {
             }
         });
 
-        buttonPause.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        buttonPause.setText("II");
-        buttonPause.setToolTipText("Pausar");
-
         buttonCancel.setText("◼");
         buttonCancel.setToolTipText("Parar");
         buttonCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,9 +120,6 @@ public class interface_principal extends javax.swing.JFrame {
                 buttonCancelMouseClicked(evt);
             }
         });
-
-        buttonReturn.setText("⏎");
-        buttonReturn.setToolTipText("Tocar do início");
 
         selectInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Violin", "Piano", "Agogo", "Harpsichord", "Tubular Bells", "Pan Flute", "Church Organ" }));
         selectInstrumento.addItemListener(new java.awt.event.ItemListener() {
@@ -150,6 +138,11 @@ public class interface_principal extends javax.swing.JFrame {
         toggleVisibilidadeControles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 toggleVisibilidadeControlesMouseClicked(evt);
+            }
+        });
+        toggleVisibilidadeControles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleVisibilidadeControlesActionPerformed(evt);
             }
         });
 
@@ -179,6 +172,11 @@ public class interface_principal extends javax.swing.JFrame {
         buttonCarregarArquivoTexto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonCarregarArquivoTextoMouseClicked(evt);
+            }
+        });
+        buttonCarregarArquivoTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCarregarArquivoTextoActionPerformed(evt);
             }
         });
 
@@ -214,18 +212,14 @@ public class interface_principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonCarregarArquivoTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonPause, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane4)
-                        .addComponent(buttonSalvarMIDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(toggleVisibilidadeControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                    .addComponent(buttonSalvarMIDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toggleVisibilidadeControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -257,11 +251,8 @@ public class interface_principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buttonPause, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buttonCancel)
-                                .addComponent(buttonReturn))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonCancel)
                             .addComponent(buttonPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCarregarArquivoTexto)
@@ -386,6 +377,14 @@ public class interface_principal extends javax.swing.JFrame {
         instrumentoInicial = instrumentoSelecionado;
     }//GEN-LAST:event_selectInstrumentoItemStateChanged
 
+    private void toggleVisibilidadeControlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleVisibilidadeControlesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toggleVisibilidadeControlesActionPerformed
+
+    private void buttonCarregarArquivoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCarregarArquivoTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonCarregarArquivoTextoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -436,9 +435,7 @@ public class interface_principal extends javax.swing.JFrame {
     private javax.swing.JLabel Label_Volume;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonCarregarArquivoTexto;
-    private javax.swing.JButton buttonPause;
     private javax.swing.JButton buttonPlay;
-    private javax.swing.JButton buttonReturn;
     private javax.swing.JButton buttonSalvarMIDI;
     private javax.swing.JFileChooser frameEscolherArquivo;
     private javax.swing.JScrollPane jScrollPane4;
