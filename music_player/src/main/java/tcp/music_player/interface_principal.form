@@ -93,12 +93,11 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="buttonCarregarArquivoTexto" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="buttonPlay" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="buttonCancel" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="buttonPlay" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="buttonCancel" min="-2" pref="167" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane4" alignment="0" pref="290" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="349" max="32767" attributes="0"/>
                   <Component id="buttonSalvarMIDI" max="32767" attributes="0"/>
                   <Component id="toggleVisibilidadeControles" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -141,8 +140,8 @@
                       <Component id="jScrollPane4" min="-2" pref="182" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonPlay" alignment="3" max="32767" attributes="0"/>
+                          <Component id="buttonCancel" alignment="3" pref="30" max="32767" attributes="0"/>
+                          <Component id="buttonPlay" alignment="3" pref="30" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonCarregarArquivoTexto" min="-2" max="-2" attributes="0"/>
@@ -226,9 +225,6 @@
         <Property name="text" type="java.lang.String" value="&#x25fc;"/>
         <Property name="toolTipText" type="java.lang.String" value="Parar"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCancelMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectInstrumento">
       <Properties>

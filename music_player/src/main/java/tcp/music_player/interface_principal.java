@@ -6,10 +6,15 @@
 package tcp.music_player;
 import org.jfugue.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class interface_principal extends javax.swing.JFrame {
@@ -115,11 +120,6 @@ public class interface_principal extends javax.swing.JFrame {
 
         buttonCancel.setText("◼");
         buttonCancel.setToolTipText("Parar");
-        buttonCancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonCancelMouseClicked(evt);
-            }
-        });
 
         selectInstrumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Violin", "Piano", "Agogo", "Harpsichord", "Tubular Bells", "Pan Flute", "Church Organ" }));
         selectInstrumento.addItemListener(new java.awt.event.ItemListener() {
@@ -213,11 +213,10 @@ public class interface_principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonCarregarArquivoTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                        .addComponent(buttonPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                     .addComponent(buttonSalvarMIDI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(toggleVisibilidadeControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
@@ -252,8 +251,8 @@ public class interface_principal extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonCancel)
-                            .addComponent(buttonPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(buttonPlay, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCarregarArquivoTexto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -281,12 +280,6 @@ public class interface_principal extends javax.swing.JFrame {
         Pattern pattern = new Pattern(textoInterpretado);
         player.play(pattern);        
     }//GEN-LAST:event_buttonPlayMouseClicked
-
-    private void buttonCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCancelMouseClicked
-        Player player = new Player();
-        Pattern pattern = new Pattern("");
-        player.play(pattern);
-    }//GEN-LAST:event_buttonCancelMouseClicked
 
     private void spinnerVolumeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerVolumeStateChanged
         int volumeAtual = (int)spinnerVolume.getValue();
@@ -342,15 +335,28 @@ public class interface_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void buttonSalvarMIDIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalvarMIDIMouseClicked
+        frameEscolherArquivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        frameEscolherArquivo.setAcceptAllFileFilterUsed(true);
         int salvarArquivo = frameEscolherArquivo.showSaveDialog(panelEscolherArquivo);
         
         if(salvarArquivo == JFileChooser.APPROVE_OPTION){
+            Interpretador interpretador;
+            String textoOriginal = textAreaMusica.getText();
+            
+            if(interfaceHabilitada){
+                interpretador = new Interpretador(textoOriginal, interfaceHabilitada, volumeInicial, instrumentoInicial, oitavaInicial, bpmInicial);            
+            }else{
+                interpretador = new Interpretador(textoOriginal, interfaceHabilitada);
+            }
+
             File arquivo = frameEscolherArquivo.getSelectedFile();
-            ManipuladorArquivos manipuladorArq = new ManipuladorArquivos(arquivo);
-            String nomeArquivo = arquivo.getName();
-            String conteudoArquivo = textAreaMusica.getText();            
+            if (!arquivo.getName().toLowerCase().endsWith(".mid")){
+                arquivo = new File(arquivo.getParentFile(), arquivo.getName() + ".mid");
+            }
+            
+            ManipuladorArquivos ma = new ManipuladorArquivos(arquivo);
             try {
-                manipuladorArq.salvarArquivoMIDI(nomeArquivo, conteudoArquivo);
+                ma.salvarArquivoMIDI(interpretador.analisarTexto(), arquivo);
             } catch (IOException ex) {
                 Logger.getLogger(interface_principal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -358,6 +364,9 @@ public class interface_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSalvarMIDIMouseClicked
 
     private void buttonCarregarArquivoTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCarregarArquivoTextoMouseClicked
+        frameEscolherArquivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter somenteArquivoTexto = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        frameEscolherArquivo.setFileFilter(somenteArquivoTexto);
         int escolherArquivo = frameEscolherArquivo.showOpenDialog(panelEscolherArquivo);
         
         if(escolherArquivo == JFileChooser.APPROVE_OPTION){

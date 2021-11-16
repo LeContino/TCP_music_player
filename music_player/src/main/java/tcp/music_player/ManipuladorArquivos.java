@@ -8,10 +8,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import org.jfugue.Player;
+import javax.sound.midi.MidiFileFormat;
+import javax.sound.midi.spi.MidiFileWriter;
+import org.jfugue.*;
 
 
-public class ManipuladorArquivos {
+public class ManipuladorArquivos{
     private File arquivo;
 
     public ManipuladorArquivos(File arquivo) {
@@ -52,23 +54,17 @@ public class ManipuladorArquivos {
         }
 
         if(extensaoArquivo != null && extensaoArquivo.equals("txt")){
-
-            // Função que le o arquivo. Provavelmente só precisa colocar o conteúdo do arquivo 
-            // em uma string e passar para o parser
             return extensaoArquivo;
         }else{
-            // mensagem de erro
             return null;
         }
     }
     
-    public boolean salvarArquivoMIDI(String nome, String conteudo) throws IOException{
-        if(nome.length() == 0 || conteudo.length() == 0){
+    public boolean salvarArquivoMIDI(String conteudo, File arquivo) throws IOException{
+        if(conteudo.length() == 0){
             return false;
         }
         
-        //String nomeSemExtensao = nome.split(".")[0];
-        File arquivo = new File(nome+".mid");
         Player player = new Player();
         player.saveMidi(conteudo, arquivo);
         return true;
